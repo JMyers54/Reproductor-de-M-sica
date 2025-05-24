@@ -1,10 +1,28 @@
 import tkinter as tk
+from tkinter import PhotoImage, filedialog,ttk
+import random
+import mutagen
 from tkinter import *
 from Tooltip import Tooltip
 
 import pygame.mixer as mx
 
 class Reproductor():
+
+    def  archivo_mp3(self):
+        global dirrecion, pos, n ,canción_actual
+        pos = 0
+        n = 0
+        dirrecion = filedialog.askopenfilename(title="selección de archivos mp3",filetypes=[("mp3 files","*.mp3"),("All files","*.*")])
+        n = len(dirrecion)
+        canción_actual = dirrecion[pos]
+
+        nombre_cancion = canción_actual.split("/")
+        nombre_cancion = nombre_cancion[-1]
+    lista = []
+    for i in range(50,200,10):
+        lista.append(i)
+    
     def play(self, event):
         mx.music.load(r"sounds\Pista.mp3")
         mx.music.play()
@@ -32,6 +50,11 @@ class Reproductor():
 
     def __init__(self):
         mx.init()
+
+        mx.init()
+        mx.init(frequency=44100)
+        cancion_actual=''
+        direccion=''
 
         self.ventana = tk.Tk()
         self.ventana.title("Mi Reproductor")
