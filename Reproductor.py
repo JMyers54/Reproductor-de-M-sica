@@ -6,10 +6,8 @@ import pygame.mixer as mx
 
 class Reproductor():
     def __init__(self):
-
-        self.funciones = Funciones()
+        self.funciones = Funciones
         mx.init()
-
         mx.init()
         mx.init(frequency=44100)
 
@@ -45,8 +43,7 @@ class Reproductor():
         self.btnResume.place(relx=0.5, rely=0.9, x=55, width=25, height=25)
         self.btnResume.bind("<Button-1>", self.funciones.resume)
         Tooltip(self.btnResume, "Presione para despausar la reproducción")
-
-        self.btonImportar = tk.Button(self.ventana)
+        """self.btonImportar = tk.Button(self.ventana) 
         self.btonImportar.place(relx=0.5,rely=0.9, x=80, width=25, height=25)
-
+        self.btonImportar.bind("<Button-1>", self.funciones.archivo_mp3)"""
         self.ventana.mainloop()
