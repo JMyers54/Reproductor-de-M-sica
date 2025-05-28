@@ -46,6 +46,7 @@ class Reproductor():
         self.btnResume.bind("<Button-1>", self.funciones.resume)
         Tooltip(self.btnResume, "Presione para despausar la reproducción")
 
-        "self.btonImportar = tk.Button(self.ventana, image=self.icono)"
+        self.btonImportar = tk.Button(self.ventana)
+        self.btonImportar.place(relx=0.5,rely=0.9, x=80, width=25, height=25)
 
         self.ventana.mainloop()
