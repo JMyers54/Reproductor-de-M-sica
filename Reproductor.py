@@ -6,9 +6,6 @@ import pygame.mixer as mx
 
 class Reproductor():
     def __init__(self):
-        self.funciones = Funciones
-        mx.init()
-        mx.init()
         mx.init(frequency=44100)
 
         self.ventana = tk.Tk()
@@ -26,24 +23,29 @@ class Reproductor():
 
         self.btnPlay = tk.Button(self.ventana, image=self.iconoPlay)
         self.btnPlay.place(relx=0.5, rely=0.9, x=10, width=25, height=25)
-        self.btnPlay.bind("<Button-1>", self.funciones.play)
         Tooltip(self.btnPlay, "Presione para reproducir la canción")
 
         self.btnPausa = tk.Button(self.ventana, image=self.iconoPausa, state="disabled")
         self.btnPausa.place(relx=0.5, rely=0.9, x=-35, width=25, height=25)
-        self.btnPausa.bind("<Button-1>", self.funciones.pausa)
         Tooltip(self.btnPausa, "Presione para pausar la reproducción")
 
         self.btnStop = tk.Button(self.ventana, image=self.iconoStop, state="disabled")
         self.btnStop.place(relx=0.5, rely=0.9, x=-80, width=25, height=25)
-        self.btnStop.bind("<Button-1>", self.funciones.stop)
         Tooltip(self.btnStop, "Presione para detener la reproducción")
 
         self.btnResume = tk.Button(self.ventana, image=self.iconoResume, state="disabled")
         self.btnResume.place(relx=0.5, rely=0.9, x=55, width=25, height=25)
-        self.btnResume.bind("<Button-1>", self.funciones.resume)
         Tooltip(self.btnResume, "Presione para despausar la reproducción")
-        """self.btonImportar = tk.Button(self.ventana) 
-        self.btonImportar.place(relx=0.5,rely=0.9, x=80, width=25, height=25)
-        self.btonImportar.bind("<Button-1>", self.funciones.archivo_mp3)"""
+
+        self.btnMp3 = tk.Button(self.ventana)
+        self.btnMp3.place(relx=0.5, rely=0.9, x=55, width=25, height=25)
+        Tooltip(self.btnMp3, "importar canción")
+
+        self.acciones = Funciones(self.estado, self.btnPausa, self.btnStop, self.btnResume, self.btnPlay)
+
+        self.btnPlay.bind("<Button-1>", self.acciones.play)
+        self.btnPausa.bind("<Button-1>", self.acciones.pausa)
+        self.btnStop.bind("<Button-1>", self.acciones.stop)
+        self.btnResume.bind("<Button-1>", self.acciones.resume)
+        self.btnMp3.bind("<Button-1>", self.acciones.archivoMP3)
         self.ventana.mainloop()
