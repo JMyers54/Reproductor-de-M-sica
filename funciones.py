@@ -37,7 +37,7 @@ class Funciones():
             audio = MP3(self.rutaActual)
             self.duracion = int(audio.info.length)
             self.progreso.config(to=self.duracion)
-            self.actualizarBarra()
+            self.BarraDeProgreso()
 
         self.estado.config(text="Reproduciendo...")
         self.btnPausa.config(state="normal")
@@ -67,4 +67,4 @@ class Funciones():
         if mx.music.get_busy():
             pos = mx.music.get_pos() // 1000
             self.progreso.set(pos)
-            self.estado.after(1000, self.actualizarBarra)
+            self.estado.after(1000, self.BarraDeProgreso)
