@@ -3,6 +3,9 @@ from tkinter import *
 from Tooltip import Tooltip
 from funciones import Funciones
 import pygame.mixer as mx
+import tkinter.ttk as ttk
+from mutagen.mp3 import MP3
+import time
 
 class Reproductor():
     def __init__(self):
@@ -41,6 +44,8 @@ class Reproductor():
         self.btnMp3.place(relx=0.5, rely=0.9, x=55, width=25, height=25)
         Tooltip(self.btnMp3, "importar canción")
 
+        self.progreso = ttk.Scale(self.ventana, from_=0, to=100, orient="Horizontal", length=400)
+        self.progreso.place(relx=0.5, rely=0.8, anchor="center")
         self.acciones = Funciones(self.estado, self.btnPausa, self.btnStop, self.btnResume, self.btnPlay)
 
         self.btnPlay.bind("<Button-1>", self.acciones.play)
