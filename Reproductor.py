@@ -63,16 +63,4 @@ class Reproductor():
         
         self.ventana.mainloop()
        
-    def mostrar_ayuda(self):
-        mensaje = (
-          "🎵 Bienvenido al Reproductor de Música 🎵\n\n"
-        "- 📂 Importar canción: Selecciona un archivo MP3 desde tu equipo.\n"
-        "- ▶️ Reproducir: Inicia la reproducción de la canción seleccionada.\n"
-        "- ⏸️ Pausar: Detiene temporalmente la reproducción.\n"
-        "- 🔁 Reanudar: Continua la canción desde donde se pausó.\n"
-        "- ⏹️ Detener: Finaliza completamente la reproducción.\n"
-        "- 🎚️ Barra de progreso: Muestra el avance de la canción.\n\n"
-        "Asegúrate de importar una canción antes de intentar reproducirla.\n"
-        "¡Disfruta tu música! 🎧"
-    )
-        messagebox.showinfo("Ayuda", mensaje)
+   
