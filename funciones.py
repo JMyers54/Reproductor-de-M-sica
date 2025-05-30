@@ -10,12 +10,12 @@ class Funciones():
     def __init__(self, estado, btnPausa, btnStop, btnResume, btnPlay, progreso):
         self.estado = estado
         self.btnPausa = btnPausa
-        self.rutaActual = r"Sounds\Pista.mp3"
+        self.rutaActual = r"Reproductor-de-M-sica\sounds\Pista.mp3"
         self.btnStop = btnStop
         self.btnResume = btnResume
         self.btnPlay = btnPlay
         self.progreso = progreso
-        self.canciónActual = r"sounds\Pista.mp3"
+        self.canciónActual = r"Reproductor-de-M-sica\sounds\Pista.mp3"
         mx.music.load(self.canciónActual)
         self.pausado = False
     
