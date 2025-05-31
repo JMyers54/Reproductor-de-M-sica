@@ -13,8 +13,8 @@ class Reproductor():
         mx.init(frequency=44100)
 
         self.ventana = tk.Tk()
-        self.ventana.title("🎧Mi Reproductor")
-        self.ventana.config(width=800, height=600, bg="#1e1e2f")
+        self.ventana.title("🎧Reproductor MP3")
+        self.ventana.config(width=500, height=220, bg="#1e1e2f")
         self.ventana.resizable(0,0)
 
         self.iconoPlay = tk.PhotoImage(file=r"Reproductor-de-M-sica\icons\control_play_blue.png")
@@ -28,7 +28,7 @@ class Reproductor():
         self.estado.place(relx=0.5, rely=0.48, anchor="center")
         
         self.btnAyuda = tk.Button(self.ventana, image=self.iconoAyuda, command=self.mostrar_ayuda)
-        self.btnAyuda.place(relx=0.95, rely=0.0, x=-10, y=10, width=35, height=35)
+        self.btnAyuda.place(relx=0.95, rely=0.0, x=-20, y=10, width=35, height=35)
         Tooltip(self.btnAyuda,"Precione para abrir ayuda")
         
         self.btnPlay = tk.Button(self.ventana, image=self.iconoPlay)
@@ -48,12 +48,28 @@ class Reproductor():
         Tooltip(self.btnResume, "Presione para despausar la reproducción")
 
         self.btnMp3 = tk.Button(self.ventana, image=self.iconoCarpeta, state="disabled" )
-        self.btnMp3.place(relx=0.54, rely=0.8, x=55, width=35, height=35)
+        self.btnMp3.place(relx=0.57, rely=0.8, x=55, width=35, height=35)
         Tooltip(self.btnMp3, "importar canción")
 
-        self.progreso = ttk.Scale(self.ventana, from_=0, to=100, orient="horizontal", length=450)
-        self.progreso.place(relx=0.5, rely=0.7, anchor="center")
-        self.acciones = Funciones(self.estado, self.btnPausa, self.btnStop, self.btnResume, self.btnPlay, self.progreso)
+        style = ttk.Style()
+        style.theme_use("default")
+        style.configure("TScale",
+        background="#1e1e2f",
+        troughcolor="#1e1e2f",
+        bordercolor="#1e1e2f",
+        lightcolor="#1e1e2f",
+        darkcolor="#1e1e2f",
+        sliderthickness=12,
+        sliderlength=10
+)
+
+        self.progreso = ttk.Scale(self.ventana, from_=0, to=100, orient="horizontal", length=450, style="TScale")
+        self.progreso.place(relx=0.5, rely=0.68, anchor="center")
+
+        self.lblDuracion = tk.Label(self.ventana, text="00:00", font=("Arial", 12), fg="white", bg="#1e1e2f")
+        self.lblDuracion.place(relx=0.9, rely=0.47)
+
+        self.acciones = Funciones(self.estado, self.btnPausa, self.btnStop, self.btnResume, self.btnPlay, self.progreso, self.lblDuracion)
 
         self.btnPlay.bind("<Button-1>", self.acciones.play)
         self.btnPausa.bind("<Button-1>", self.acciones.pausa)

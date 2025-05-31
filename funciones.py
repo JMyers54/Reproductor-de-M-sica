@@ -7,7 +7,7 @@ from mutagen.mp3 import MP3
 import time
 
 class Funciones():
-    def __init__(self, estado, btnPausa, btnStop, btnResume, btnPlay, progreso):
+    def __init__(self, estado, btnPausa, btnStop, btnResume, btnPlay, progreso, lblDuracion):
         self.estado = estado
         self.btnPausa = btnPausa
         self.rutaActual = r"Reproductor-de-M-sica\sounds\Pista.mp3"
@@ -15,6 +15,7 @@ class Funciones():
         self.btnResume = btnResume
         self.btnPlay = btnPlay
         self.progreso = progreso
+        self.lblDuracion = lblDuracion
         self.canciónActual = r"Reproductor-de-M-sica\sounds\Pista.mp3"
         mx.music.load(self.canciónActual)
         self.pausado = False
@@ -23,6 +24,7 @@ class Funciones():
         archivo = filedialog.askopenfilename(title="Abrir archivo de música",filetypes=[("archivos MP3","*.mp3")])
         if archivo:
             try:
+                self.rutaActual = archivo
                 mx.music.load(archivo)
                 mx.music.play()
                 self.estado.config(text=f"Reproduciendo:{archivo.split('/')[-1]}")
@@ -35,9 +37,16 @@ class Funciones():
         else:
             mx.music.play()
             audio = MP3(self.rutaActual)
-            self.duracion = int(audio.info.length)
-            self.progreso.config(to=self.duracion)
-            self.BarraDeProgreso()
+        self.duracion = int(audio.info.length)
+        self.progreso.config(to=self.duracion)
+
+        minutos = self.duracion // 60
+        segundos = self.duracion % 60
+        tiempo_formateado = f"{minutos:02}:{segundos:02}"
+        self.lblDuracion.config(text=tiempo_formateado)
+
+        self.BarraDeProgreso()
+
 
         self.estado.config(text="Reproduciendo...")
         self.btnPausa.config(state="normal")
