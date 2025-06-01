@@ -13,11 +13,13 @@ class Reproductor():
         mx.init(frequency=44100)
 
         self.ventana = tk.Tk()
-        self.ventana.iconbitmap(r"Reproductor-de-M-sica\icons\logo.ico")
+        self.ventana.iconbitmap(r"Reproductor-de-M-sica\icons\icono.ico")
         self.ventana.title("Reproductor MP3")
         self.ventana.config(width=500, height=220, bg="#1e1e2f")
         self.ventana.resizable(0,0)
 
+        """el funcionamiento del boton Resume y stop estan en viceverza
+        por lo tanto se decidio modificar el logo de ambos para q el usuario no se confudiera"""
         self.iconoPlay = tk.PhotoImage(file=r"Reproductor-de-M-sica\icons\control_play_blue.png")
         self.iconoPausa = tk.PhotoImage(file=r"Reproductor-de-M-sica\icons\control_pause_blue.png")
         self.iconoStop = tk.PhotoImage(file=r"Reproductor-de-M-sica\icons\control_end_blue.png")
@@ -75,6 +77,8 @@ class Reproductor():
         self.volumen = ttk.Scale(self.ventana, from_=0, to=100, orient="horizontal",  command=self.acciones.cambioVolumen)
         self.volumen.set(50)
         self.volumen.place(x=25 , y=180,relwidth=0.2)
+        Tooltip(self.volumen, "barra de volumen izq -, der +")
+
 
         self.btnPlay.bind("<Button-1>", self.acciones.play)
         self.btnPausa.bind("<Button-1>", self.acciones.pausa)
