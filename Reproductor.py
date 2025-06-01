@@ -5,15 +5,16 @@ from funciones import Funciones
 import pygame.mixer as mx
 import tkinter.ttk as ttk
 from mutagen.mp3 import MP3
-import time
+
 from tkinter import messagebox
+
 
 class Reproductor():
     def __init__(self):
         mx.init(frequency=44100)
 
         self.ventana = tk.Tk()
-        self.ventana.iconbitmap(r"Reproductor-de-M-sica\icons\icono.ico")
+        self.ventana.iconbitmap(r"Reproductor-de-M-sica\icons\reproductor.ico")
         self.ventana.title("Reproductor MP3")
         self.ventana.config(width=500, height=220, bg="#1e1e2f")
         self.ventana.resizable(0,0)
@@ -86,6 +87,7 @@ class Reproductor():
         self.btnResume.bind("<Button-1>", self.acciones.reproducirSiguienteCanción)
         self.btnMp3.bind("<Button-1>", self.acciones.carpeta)
 
+        #atajos
         self.ventana.bind("<a>", self.acciones.play)
         self.ventana.bind("<space>", self.acciones.pausa)
         self.ventana.bind("<s>", self.acciones.stop)
