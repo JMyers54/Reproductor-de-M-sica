@@ -13,7 +13,7 @@ class Reproductor():
         mx.init(frequency=44100)
 
         self.ventana = tk.Tk()
-        self.ventana.title("🎧Reproductor MP3")
+        self.ventana.title("🎧Reproductor MP3 ")
         self.ventana.config(width=500, height=220, bg="#1e1e2f")
         self.ventana.resizable(0,0)
 
