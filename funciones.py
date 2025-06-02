@@ -42,7 +42,7 @@ class Funciones():
 
     def reproducirSiguienteCanción(self, event=None):
         if self.UbicaciónActual >= len(self.listaCanción):
-            self.estado.config(text="Se terminó la lista de reproducción.")
+            self.estado.config(text="no se encuentran mas canciones..")
             return
 
         archivo = os.path.join(self.carpetaActual, self.listaCanción[self.UbicaciónActual])
